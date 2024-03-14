@@ -11,5 +11,5 @@ public interface StackInterface {
     
     public void emptyStack();
     
-    public Object peak();
+    public Object peek();
 }

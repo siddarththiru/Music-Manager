@@ -1,14 +1,15 @@
 package musicapp;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MyStack implements StackInterface {
 
-    private ArrayList<String> myStack;
+    private ArrayList<Object> myStack;
 
     //Creating an instance of Stack
     public MyStack() {
-        myStack = new ArrayList<>();
+        myStack = new ArrayList<Object>();
     }
 
     @Override
@@ -36,7 +37,7 @@ public class MyStack implements StackInterface {
     @Override
     //pushes an item to the top of the stack
     public void push(Object newItem) {
-        myStack.add(0, (String) newItem);
+        myStack.add(0, (Object) newItem);
 
     }
 
@@ -50,7 +51,17 @@ public class MyStack implements StackInterface {
     
     @Override
     //returns the top element of the stack without removing it
-    public Object peak(){
+    public Object peek(){
         return myStack.get(0);
+    }
+    
+    //to search and print details of song if a match is found
+    public void search(String searchTerm){
+        for (Object obj:myStack){
+            Song mySong = (Song)obj;
+            if(mySong.getName().equalsIgnoreCase(searchTerm)){
+                JOptionPane.showMessageDialog(null, "Name: " + mySong.getName() + "\nGenre: " + mySong.getGenre());
+            }
+        }
     }
 }
