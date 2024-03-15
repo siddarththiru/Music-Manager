@@ -17,7 +17,10 @@ public class MyStack implements StackInterface {
     public int size() {
         return myStack.size();
     }
-
+    
+    public Object get(int i){
+        return myStack.get(i);
+    }
     @Override
     //returns boolean if the stack is empty or not
     public boolean isEmpty() {
@@ -65,7 +68,7 @@ public class MyStack implements StackInterface {
         for (Object obj:myStack){
             Song mySong = (Song)obj;
             if(mySong.getName().equalsIgnoreCase(searchTerm)){
-                JOptionPane.showMessageDialog(null, "Name: " + mySong.getName() + "\nGenre: " + mySong.getGenre());
+                JOptionPane.showMessageDialog(null, "Name: " + mySong.getName());
             }
         }
     }
