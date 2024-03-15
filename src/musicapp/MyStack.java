@@ -52,7 +52,12 @@ public class MyStack implements StackInterface {
     @Override
     //returns the top element of the stack without removing it
     public Object peek(){
-        return myStack.get(0);
+        if(!myStack.isEmpty()){
+            return myStack.get(0);
+        }
+        else{
+            return null;
+        }
     }
     
     //to search and print details of song if a match is found
