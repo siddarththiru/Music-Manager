@@ -129,6 +129,7 @@ public class SLList implements LinearListInterface {
                 } else {
                     prevNode.setNext(currentNode.getNext());
                 }
+                JOptionPane.showMessageDialog(null, "Successfully deleted song");
                 iSize--;
                 return;
             }

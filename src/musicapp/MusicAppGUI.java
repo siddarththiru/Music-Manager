@@ -206,7 +206,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
         moveSongTitleLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         moveSongTitleLbl.setText("Move your latest liked song to a genre");
 
-        latestSongLbl.setText("you currently have no songs to move");
+        latestSongLbl.setText("add a song to move");
 
         moveSongField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pop", "Hip Hop", "EDM" }));
 
@@ -486,6 +486,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
             default:
                 JOptionPane.showMessageDialog(null, "An unexpected error occurred when deleting the song");
         }
+        updateLatestSongLbl();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void repeatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repeatBtnActionPerformed
@@ -554,6 +555,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
             default:
                 JOptionPane.showMessageDialog(null, "Error when adding song to destination");
         }
+        updateLatestSongLbl();
     }//GEN-LAST:event_moveSongGenreBtnActionPerformed
 
     public static void main(String args[]) {

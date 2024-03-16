@@ -405,7 +405,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="latestSongLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="you currently have no songs to move"/>
+                <Property name="text" type="java.lang.String" value="add a song to move"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="moveSongField">
