@@ -139,28 +139,30 @@ public class SLList implements LinearListInterface {
         JOptionPane.showMessageDialog(null, "This List does not contain your Song");
     }
     
+    @Override
+    // this method finds and object using a String argument and removes it from the List
     public Object findAndRemove(String songName){
-    if (this.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Playlist is empty. There are no songs to search.");
+        if (this.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Playlist is empty. There are no songs to search.");
+            return null;
+        }
+        Node currentNode = head;
+        Node prevNode = null;
+        while (currentNode != null) {
+            Song currentSong = (Song) currentNode.getElement();
+            if (currentSong.getName().equalsIgnoreCase(songName)) {
+                if (prevNode == null) {
+                    head = head.getNext();
+                } else {
+                    prevNode.setNext(currentNode.getNext());
+                }
+                iSize--;
+                return currentSong;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        JOptionPane.showMessageDialog(null, (songName + " was not found, please double check the playlist and your search query"));
         return null;
     }
-    Node currentNode = head;
-    Node prevNode = null;
-    while (currentNode != null) {
-        Song currentSong = (Song) currentNode.getElement();
-        if (currentSong.getName().equalsIgnoreCase(songName)) {
-            if (prevNode == null) {
-                head = head.getNext();
-            } else {
-                prevNode.setNext(currentNode.getNext());
-            }
-            iSize--;
-            return currentSong;
-        }
-        prevNode = currentNode;
-        currentNode = currentNode.getNext();
-    }
-    JOptionPane.showMessageDialog(null, (songName + " was not found, please double check the playlist and your search query"));
-    return null;
-}
 }

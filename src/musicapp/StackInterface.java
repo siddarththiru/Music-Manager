@@ -12,4 +12,8 @@ public interface StackInterface {
     public void emptyStack();
     
     public Object peek();
+    
+    public void search(String searchTerm);
+    
+    public void delete(String deleteTerm);
 }

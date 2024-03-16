@@ -386,6 +386,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewPlaylistBtnActionPerformed
 
+    // returns a string nicely formatted to be displayed on text area
     public String listOutElements(MyStack aStack){
         sb = new StringBuffer();
         for (int i = 0; i < aStack.size(); i++){
@@ -417,6 +418,8 @@ public class MusicAppGUI extends javax.swing.JFrame {
             case "EDM List":
                 JOptionPane.showMessageDialog(null,"Number of songs in the selected playlist: " + edmList.size());
                 break;
+            default:
+                JOptionPane.showMessageDialog(null, "Sorry, an error occurred when counting number of songs in the playlist");
         }        
     }//GEN-LAST:event_countPlaylistSongsBtnActionPerformed
 
@@ -464,31 +467,25 @@ public class MusicAppGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-        String deleteTerm = deleteSongTf.getText();
+        String deleteTerm = " ";
+        deleteTerm = deleteSongTf.getText();
         int deleteSource = deleteSongPlaylistField.getSelectedIndex();
-        String message;
         switch(deleteSource){
             case 0:
                 likedSongStack.delete(deleteTerm);
-                message = "Succesfully deleted the song";
                 break;
             case 1:
                 popList.delete(deleteTerm);
-                message = "Succesfully deleted the song";
                 break;
             case 2:
                 hipHopList.delete(deleteTerm);
-                message = "Succesfully deleted the song";
                 break;
             case 3:
                 edmList.delete(deleteTerm);
-                message = "Succesfully deleted the song";
                 break;
             default:
-                message = "An unexpected error occurred when deleting the song";
+                JOptionPane.showMessageDialog(null, "An unexpected error occurred when deleting the song");
         }
-        JOptionPane.showMessageDialog(null, message);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void repeatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repeatBtnActionPerformed

@@ -15,4 +15,10 @@ public interface LinearListInterface {
     public void add(Object element);
 
     public void printList();
+    
+    public void search(String searchTerm);
+    
+    public void delete(String deleteTerm);
+    
+    public Object findAndRemove(String songName);
 }
