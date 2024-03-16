@@ -56,6 +56,8 @@ public class MusicAppGUI extends javax.swing.JFrame {
         deleteSongPlaylistField = new javax.swing.JComboBox<>();
         deleteSongTf = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
+        repeatSongPlaylistField = new javax.swing.JComboBox<>();
+        repeatBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,6 +254,15 @@ public class MusicAppGUI extends javax.swing.JFrame {
             }
         });
 
+        repeatSongPlaylistField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liked Songs", "Pop", "Hip Hop", "EDM" }));
+
+        repeatBtn.setText("Set playlist to repeat");
+        repeatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repeatBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addSongPanelLayout = new javax.swing.GroupLayout(addSongPanel);
         addSongPanel.setLayout(addSongPanelLayout);
         addSongPanelLayout.setHorizontalGroup(
@@ -278,7 +289,12 @@ public class MusicAppGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteSongTf, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteBtn)))
+                        .addComponent(deleteBtn))
+                    .addGroup(addSongPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(repeatSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(repeatBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addSongPanelLayout.setVerticalGroup(
@@ -296,12 +312,16 @@ public class MusicAppGUI extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(68, 68, 68)
+                .addGap(18, 18, 18)
                 .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteSongTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(repeatSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(repeatBtn))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -459,6 +479,35 @@ public class MusicAppGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, message);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    private void repeatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repeatBtnActionPerformed
+        int repeatSource = repeatSongPlaylistField.getSelectedIndex();
+        int repeatCount = Integer.parseInt(JOptionPane.showInputDialog(null, "How many times would you like to repeat"));
+        viewListArea.setText("");
+        switch(repeatSource){
+            case 0:
+                for(int i = 0; i<repeatCount; i++){
+                    viewListArea.append(listOutElements(likedSongStack));
+                }
+                break;
+            case 1:
+                for(int i = 0; i<repeatCount; i++){
+                    viewListArea.append(listOutElements(popList));
+                }
+                break;
+            case 2:
+                for(int i = 0; i<repeatCount; i++){
+                    viewListArea.append(listOutElements(hipHopList));
+                }
+            case 3:
+                for(int i = 0; i<repeatCount; i++){
+                    viewListArea.append(listOutElements(edmList));
+                }
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Sorry, an unexpected error occurred, please also ensure you enter a valid number");
+        }
+    }//GEN-LAST:event_repeatBtnActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -522,6 +571,8 @@ public class MusicAppGUI extends javax.swing.JFrame {
     private javax.swing.JButton moveSongBtn;
     private javax.swing.JComboBox<String> moveSongField;
     private javax.swing.JLabel moveSongTitleLbl;
+    private javax.swing.JButton repeatBtn;
+    private javax.swing.JComboBox<String> repeatSongPlaylistField;
     private javax.swing.JButton searchBtn;
     private javax.swing.JComboBox<String> searchSongPlaylistField;
     private javax.swing.JTextField searchTf;

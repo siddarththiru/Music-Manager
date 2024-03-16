@@ -100,18 +100,21 @@ public class SLList implements LinearListInterface {
     }
 
     public void search(String searchTerm) {
+        if (this.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Playlist is empty. There are no songs to search.");
+            return;
+        }
         Node currentNode = head;
         while (currentNode != null) {
             Song currentSong = (Song) currentNode.getElement();
             if (currentSong.getName().equalsIgnoreCase(searchTerm)) {
-                JOptionPane.showMessageDialog(null, "Name: " + currentSong.getName());
+                JOptionPane.showMessageDialog(null, "Song Found!\nName: " + currentSong.getName());
                 break;
-                //to break out
         }
             currentNode = currentNode.getNext();
         }
         if (currentNode == null){
-            JOptionPane.showMessageDialog(null, "This List does not contain your Song");
+            JOptionPane.showMessageDialog(null, (searchTerm + " was not be found, please double check the playlist and your search query"));
         }
     }
     public void delete(String deleteTerm) {

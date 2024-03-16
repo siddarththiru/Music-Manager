@@ -41,7 +41,6 @@ public class MyStack implements StackInterface {
     //pushes an item to the top of the stack
     public void push(Object newItem) {
         myStack.add(0, (Object) newItem);
-
     }
 
     @Override
@@ -64,14 +63,24 @@ public class MyStack implements StackInterface {
     }
     
     //to search and print details of song if a match is found
-    public void search(String searchTerm){
-        for (Object obj:myStack){
-            Song mySong = (Song)obj;
-            if(mySong.getName().equalsIgnoreCase(searchTerm)){
-                JOptionPane.showMessageDialog(null, "Name: " + mySong.getName());
+    public void search(String searchTerm) {
+        //when there's nothing in the stack
+        if (myStack.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Playlist is empty. There are no songs to search.");
+            return;
+        }
+        //looking for song
+        for (Object obj : myStack) {
+            Song mySong = (Song) obj;
+            if (mySong.getName().equalsIgnoreCase(searchTerm)) {
+                JOptionPane.showMessageDialog(null, "Song Found!\nName: " + mySong.getName());
+                return;
             }
         }
+        //when song is not found
+        JOptionPane.showMessageDialog(null, searchTerm + " was not found. Please double check the playlist and your search query");
     }
+
     
     //Tested and changed to account for ConcurrentModificationException which occured when trying to delete an Object using the for each loop
     public void delete(String deleteTerm) {
@@ -90,5 +99,4 @@ public class MyStack implements StackInterface {
         myStack.remove(songToRemove);
     }
 }
-
 }
