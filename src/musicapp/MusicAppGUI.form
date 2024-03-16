@@ -33,7 +33,7 @@
               <Component id="jPanel1" min="-2" pref="53" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="addSongPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,6 +118,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="repeatBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="moveSongGenreBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -152,7 +156,9 @@
                       <Component id="repeatSongPlaylistField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="repeatBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="moveSongGenreBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -363,7 +369,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="moveSongBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="moveSong" min="-2" max="-2" attributes="0"/>
                           <Component id="moveSongTitleLbl" min="-2" pref="216" max="-2" attributes="0"/>
                           <Component id="latestSongLbl" min="-2" pref="264" max="-2" attributes="0"/>
                           <Component id="moveSongField" min="-2" pref="162" max="-2" attributes="0"/>
@@ -382,7 +388,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="moveSongField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
-                      <Component id="moveSongBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="moveSong" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -416,12 +422,12 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="moveSongBtn">
+            <Component class="javax.swing.JButton" name="moveSong">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Move"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moveSongBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moveSongActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -487,6 +493,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="repeatBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="moveSongGenreBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Move a Song from a Genre"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moveSongGenreBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

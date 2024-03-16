@@ -110,7 +110,7 @@ public class SLList implements LinearListInterface {
             if (currentSong.getName().equalsIgnoreCase(searchTerm)) {
                 JOptionPane.showMessageDialog(null, "Song Found!\nName: " + currentSong.getName());
                 break;
-        }
+            }
             currentNode = currentNode.getNext();
         }
         if (currentNode == null){
@@ -138,5 +138,31 @@ public class SLList implements LinearListInterface {
         }
         JOptionPane.showMessageDialog(null, "This List does not contain your Song");
     }
+    
+    public Object findAndRemove(String songName){
+    if (this.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Playlist is empty. There are no songs to search.");
+        return null;
+    }
+    Node currentNode = head;
+    Node prevNode = null;
+    while (currentNode != null) {
+        Song currentSong = (Song) currentNode.getElement();
+        if (currentSong.getName().equalsIgnoreCase(songName)) {
+            if (prevNode == null) {
+                head = head.getNext();
+            } else {
+                prevNode.setNext(currentNode.getNext());
+            }
+            iSize--;
+            return currentSong;
+        }
+        prevNode = currentNode;
+        currentNode = currentNode.getNext();
+    }
+    JOptionPane.showMessageDialog(null, (songName + " was not found, please double check the playlist and your search query"));
+    return null;
+}
+
 
 }

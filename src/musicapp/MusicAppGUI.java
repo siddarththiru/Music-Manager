@@ -51,13 +51,14 @@ public class MusicAppGUI extends javax.swing.JFrame {
         moveSongTitleLbl = new javax.swing.JLabel();
         latestSongLbl = new javax.swing.JLabel();
         moveSongField = new javax.swing.JComboBox<>();
-        moveSongBtn = new javax.swing.JButton();
+        moveSong = new javax.swing.JButton();
         searchSongPlaylistField = new javax.swing.JComboBox<>();
         deleteSongPlaylistField = new javax.swing.JComboBox<>();
         deleteSongTf = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
         repeatSongPlaylistField = new javax.swing.JComboBox<>();
         repeatBtn = new javax.swing.JButton();
+        moveSongGenreBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,10 +210,10 @@ public class MusicAppGUI extends javax.swing.JFrame {
 
         moveSongField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pop", "Hip Hop", "EDM" }));
 
-        moveSongBtn.setText("Move");
-        moveSongBtn.addActionListener(new java.awt.event.ActionListener() {
+        moveSong.setText("Move");
+        moveSong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moveSongBtnActionPerformed(evt);
+                moveSongActionPerformed(evt);
             }
         });
 
@@ -223,7 +224,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(moveSongBtn)
+                    .addComponent(moveSong)
                     .addComponent(moveSongTitleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(latestSongLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(moveSongField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,7 +240,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(moveSongField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(moveSongBtn)
+                .addComponent(moveSong)
                 .addContainerGap())
         );
 
@@ -260,6 +261,13 @@ public class MusicAppGUI extends javax.swing.JFrame {
         repeatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repeatBtnActionPerformed(evt);
+            }
+        });
+
+        moveSongGenreBtn.setText("Move a Song from a Genre");
+        moveSongGenreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveSongGenreBtnActionPerformed(evt);
             }
         });
 
@@ -294,7 +302,10 @@ public class MusicAppGUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(repeatSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(repeatBtn)))
+                        .addComponent(repeatBtn))
+                    .addGroup(addSongPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(moveSongGenreBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addSongPanelLayout.setVerticalGroup(
@@ -321,7 +332,9 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(repeatSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(repeatBtn))
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(moveSongGenreBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,7 +350,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addSongPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -408,7 +421,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_countPlaylistSongsBtnActionPerformed
 
-    private void moveSongBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongBtnActionPerformed
+    private void moveSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongActionPerformed
         Song songToMove = null;
         String genre = (String)moveSongField.getSelectedItem();
         songToMove = (Song)likedSongStack.pop();
@@ -428,7 +441,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
             }
             updateLatestSongLbl();
         }
-    }//GEN-LAST:event_moveSongBtnActionPerformed
+    }//GEN-LAST:event_moveSongActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         String searchTerm = searchTf.getText();
@@ -508,6 +521,45 @@ public class MusicAppGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_repeatBtnActionPerformed
 
+    private void moveSongGenreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongGenreBtnActionPerformed
+        String songName = JOptionPane.showInputDialog(null, "Enter the name of the Song you would like to move");
+        int sourceList = Integer.parseInt(JOptionPane.showInputDialog(null, "What is the Current location of your song?(Only enter the number)\n 1. Pop List \n2. Hip Hop List \n3.EDM List"));
+        int destinationList = Integer.parseInt(JOptionPane.showInputDialog(null, "Lastly, where would you like to move it to?(Only enter the number)\n 1. Pop List \n2. Hip Hop List \n3.EDM List"));
+        Song mySong = null;
+        
+        switch(sourceList){
+            case 1:
+                mySong = (Song)popList.findAndRemove(songName);
+                break;
+            case 2:
+                mySong = (Song)hipHopList.findAndRemove(songName);
+                break;
+            case 3:
+                mySong = (Song)edmList.findAndRemove(songName);
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"Error in selecting source playlist");
+                break;
+        }
+        
+        switch(destinationList){
+            case 1:
+                popList.add(mySong);
+                JOptionPane.showMessageDialog(null, "Song moved successfully");
+                break;
+            case 2:
+                hipHopList.add(mySong);
+                JOptionPane.showMessageDialog(null, "Song moved successfully");
+                break;
+            case 3:
+                edmList.add(mySong);
+                JOptionPane.showMessageDialog(null, "Song moved successfully");                
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Error when adding song to destination");
+        }
+    }//GEN-LAST:event_moveSongGenreBtnActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -568,8 +620,9 @@ public class MusicAppGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel latestSongLbl;
-    private javax.swing.JButton moveSongBtn;
+    private javax.swing.JButton moveSong;
     private javax.swing.JComboBox<String> moveSongField;
+    private javax.swing.JButton moveSongGenreBtn;
     private javax.swing.JLabel moveSongTitleLbl;
     private javax.swing.JButton repeatBtn;
     private javax.swing.JComboBox<String> repeatSongPlaylistField;
