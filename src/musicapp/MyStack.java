@@ -72,4 +72,23 @@ public class MyStack implements StackInterface {
             }
         }
     }
+    
+    //Tested and changed to account for ConcurrentModificationException which occured when trying to delete an Object using the for each loop
+    public void delete(String deleteTerm) {
+    List<Song> songsToRemove = new ArrayList<>();
+
+    // Iterate over myStack to find songs to remove
+    for (Object obj : myStack) {
+        Song mySong = (Song) obj;
+        if (mySong.getName().equalsIgnoreCase(deleteTerm)) {
+            songsToRemove.add(mySong);
+        }
+    }
+
+    // Remove the found songs after iteration
+    for (Song songToRemove : songsToRemove) {
+        myStack.remove(songToRemove);
+    }
+}
+
 }

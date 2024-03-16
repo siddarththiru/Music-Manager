@@ -1,5 +1,7 @@
 package musicapp;
 
+import javax.swing.JOptionPane;
+
 public class SLList implements LinearListInterface {
 
     private Node head;
@@ -58,7 +60,7 @@ public class SLList implements LinearListInterface {
     @Override
     public Object get(int iIndex) {
         setCurrent(iIndex);
-        return curNode;
+        return curNode.getElement();
     }
 
     @Override
@@ -96,4 +98,42 @@ public class SLList implements LinearListInterface {
             aNode = aNode.getNext();
         }
     }
+
+    public void search(String searchTerm) {
+        Node currentNode = head;
+        while (currentNode != null) {
+            Song currentSong = (Song) currentNode.getElement();
+            if (currentSong.getName().equalsIgnoreCase(searchTerm)) {
+                JOptionPane.showMessageDialog(null, "Name: " + currentSong.getName());
+                break;
+                //to break out
+        }
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode == null){
+            JOptionPane.showMessageDialog(null, "This List does not contain your Song");
+        }
+    }
+    public void delete(String deleteTerm) {
+        Node currentNode = head;
+        Node prevNode = null;
+        int i = 1;
+        while (currentNode != null) {
+            Song currentSong = (Song) currentNode.getElement();
+            if (currentSong.getName().equalsIgnoreCase(deleteTerm)) {
+                if (prevNode == null) {
+                    head = head.getNext();
+                } else {
+                    prevNode.setNext(currentNode.getNext());
+                }
+                iSize--;
+                return;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.getNext();
+            i++;
+        }
+        JOptionPane.showMessageDialog(null, "This List does not contain your Song");
+    }
+
 }

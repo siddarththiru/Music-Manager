@@ -9,6 +9,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
     SLList hipHopList;
     SLList edmList;
     StringBuffer sb;
+    Node aNode;
     
     public MusicAppGUI() {
         initComponents();
@@ -51,6 +52,10 @@ public class MusicAppGUI extends javax.swing.JFrame {
         latestSongLbl = new javax.swing.JLabel();
         moveSongField = new javax.swing.JComboBox<>();
         moveSongBtn = new javax.swing.JButton();
+        searchSongPlaylistField = new javax.swing.JComboBox<>();
+        deleteSongPlaylistField = new javax.swing.JComboBox<>();
+        deleteSongTf = new javax.swing.JTextField();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,6 +164,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
             }
         });
 
+        viewListArea.setEditable(false);
         viewListArea.setColumns(20);
         viewListArea.setRows(5);
         jScrollPane1.setViewportView(viewListArea);
@@ -235,6 +241,17 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        searchSongPlaylistField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liked Songs", "Pop", "Hip Hop", "EDM" }));
+
+        deleteSongPlaylistField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Liked Songs", "Pop", "Hip Hop", "EDM" }));
+
+        deleteBtn.setText("Delete by name");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addSongPanelLayout = new javax.swing.GroupLayout(addSongPanel);
         addSongPanel.setLayout(addSongPanelLayout);
         addSongPanelLayout.setHorizontalGroup(
@@ -249,11 +266,20 @@ public class MusicAppGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(viewSongPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addSongPanelLayout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addGap(129, 129, 129)
+                        .addComponent(searchSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchTf, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchBtn)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchBtn))
+                    .addGroup(addSongPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(deleteSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteSongTf, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addSongPanelLayout.setVerticalGroup(
             addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,15 +287,21 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewSongPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addSongPanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(144, 144, 144))
+                .addGap(68, 68, 68)
+                .addGroup(addSongPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteSongTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteSongPlaylistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,7 +317,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addSongPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -294,7 +326,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
     private void addSongNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSongNameTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addSongNameTfActionPerformed
-
+    
     private void addSongBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSongBtnActionPerformed
         String name = addSongNameTf.getText();
         Song mySong = new Song(name);
@@ -305,24 +337,35 @@ public class MusicAppGUI extends javax.swing.JFrame {
 
     private void viewPlaylistBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPlaylistBtnActionPerformed
         String selectedPlaylist = (String) viewPlaylistField.getSelectedItem();
-        
         switch(selectedPlaylist){
             case "Liked Songs Playlist":
                 viewListArea.setText(listOutElements(likedSongStack));
                 break;
             case "Pop List":
-                popList.printList();
+                viewListArea.setText(listOutElements(popList));
                 break;
             case "Hip Hop List":
+                viewListArea.setText(listOutElements(hipHopList));
                 break;
             case "EDM List":
+                viewListArea.setText(listOutElements(edmList));
                 break;
         }
     }//GEN-LAST:event_viewPlaylistBtnActionPerformed
 
     public String listOutElements(MyStack aStack){
-        for (int i = 0; i < aStack.size()-1; i++){
+        sb = new StringBuffer();
+        for (int i = 0; i < aStack.size(); i++){
             Song aSong = (Song) aStack.get(i);
+            if(aSong != null) sb.append(aSong.getName()+"\n");
+        }
+        return sb.toString();
+    }
+    public String listOutElements(SLList aList){
+        sb = new StringBuffer();
+        for (int i = 0; i < aList.size(); i++){
+            Song aSong = (Song) aList.get(i);
+            System.out.println(aSong.getName());
             sb.append(aSong.getName()+"\n");
         }
         return sb.toString();
@@ -346,24 +389,75 @@ public class MusicAppGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_countPlaylistSongsBtnActionPerformed
 
     private void moveSongBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveSongBtnActionPerformed
+        Song songToMove = null;
         String genre = (String)moveSongField.getSelectedItem();
-        Song songToMove = (Song)likedSongStack.pop();
-        switch(genre){
-            case "Pop":
-                popList.add(songToMove);
-                break;
-            case "Hip Hop":
-                hipHopList.add(songToMove);
-                break;
-            case "EDM":
-                edmList.add(songToMove);
-                break;
+        songToMove = (Song)likedSongStack.pop();
+        if (songToMove != null){
+            switch(genre){
+                case "Pop":
+                    popList.add(songToMove);
+                    break;
+                case "Hip Hop":
+                    hipHopList.add(songToMove);
+                    break;
+                case "EDM":
+                    edmList.add(songToMove);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Sorry, an unexpected error occurred when moving song");
+            }
+            updateLatestSongLbl();
         }
     }//GEN-LAST:event_moveSongBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-
+        String searchTerm = searchTf.getText();
+        int searchListIndex = searchSongPlaylistField.getSelectedIndex();
+        
+        switch(searchListIndex){
+            case 0:
+                likedSongStack.search(searchTerm);
+                break;
+            case 1:
+                popList.search(searchTerm);
+                break;
+            case 2:
+                hipHopList.search(searchTerm);
+                break;
+            case 3:
+                edmList.search(searchTerm);
+                break;
+        }
+        
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        String deleteTerm = deleteSongTf.getText();
+        int deleteSource = deleteSongPlaylistField.getSelectedIndex();
+        String message;
+        switch(deleteSource){
+            case 0:
+                likedSongStack.delete(deleteTerm);
+                message = "Succesfully deleted the song";
+                break;
+            case 1:
+                popList.delete(deleteTerm);
+                message = "Succesfully deleted the song";
+                break;
+            case 2:
+                hipHopList.delete(deleteTerm);
+                message = "Succesfully deleted the song";
+                break;
+            case 3:
+                edmList.delete(deleteTerm);
+                message = "Succesfully deleted the song";
+                break;
+            default:
+                message = "An unexpected error occurred when deleting the song";
+        }
+        JOptionPane.showMessageDialog(null, message);
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -399,7 +493,12 @@ public class MusicAppGUI extends javax.swing.JFrame {
     
     public void updateLatestSongLbl(){
         Song mySong = (Song)likedSongStack.peek();
-        latestSongLbl.setText(mySong.getName());
+        if(mySong!=null){
+            latestSongLbl.setText(mySong.getName());
+        }
+        else{
+            latestSongLbl.setText("No songs to move");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -407,6 +506,9 @@ public class MusicAppGUI extends javax.swing.JFrame {
     private javax.swing.JTextField addSongNameTf;
     private javax.swing.JPanel addSongPanel;
     private javax.swing.JButton countPlaylistSongsBtn;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JComboBox<String> deleteSongPlaylistField;
+    private javax.swing.JTextField deleteSongTf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -421,6 +523,7 @@ public class MusicAppGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> moveSongField;
     private javax.swing.JLabel moveSongTitleLbl;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JComboBox<String> searchSongPlaylistField;
     private javax.swing.JTextField searchTf;
     private javax.swing.JTextArea viewListArea;
     private javax.swing.JButton viewPlaylistBtn;
