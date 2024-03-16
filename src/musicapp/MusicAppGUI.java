@@ -396,9 +396,8 @@ public class MusicAppGUI extends javax.swing.JFrame {
     }
     public String listOutElements(SLList aList){
         sb = new StringBuffer();
-        for (int i = 0; i < aList.size(); i++){
+        for (int i = 1; i < aList.size()+1; i++){
             Song aSong = (Song) aList.get(i);
-            System.out.println(aSong.getName());
             sb.append(aSong.getName()+"\n");
         }
         return sb.toString();

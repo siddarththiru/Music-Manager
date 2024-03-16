@@ -163,6 +163,4 @@ public class SLList implements LinearListInterface {
     JOptionPane.showMessageDialog(null, (songName + " was not found, please double check the playlist and your search query"));
     return null;
 }
-
-
 }
